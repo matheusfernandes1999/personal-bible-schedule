@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "personal-bible-schedule",
+    "name": "Personal Bible Schedule",
     "slug": "personal-bible-schedule",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -14,8 +14,9 @@
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
-      }
+        "backgroundColor": "#512DA8"
+      },
+      "package": "com.matheus.fernandes.congregationmanager"
     },
     "web": {
       "bundler": "metro",
@@ -27,15 +28,27 @@
       [
         "expo-splash-screen",
         {
-          "image": "./assets/images/splash-icon.png",
-          "imageWidth": 200,
-          "resizeMode": "contain",
-          "backgroundColor": "#ffffff"
+          "backgroundColor": "#ECEDEE",
+          "image": "./assets/images/splash-icon-light.png",
+          "dark": {
+            "image": "./assets/images/splash-icon-dark.png",
+            "backgroundColor": "#151718"
+          },
+          "imageWidth": 200
         }
       ]
     ],
     "experiments": {
       "typedRoutes": true
-    }
+    },
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "5ca18238-2f82-45a2-b2d4-83994195e7a9"
+      }
+    },
+    "owner": "matheus.fernandes"
   }
 }

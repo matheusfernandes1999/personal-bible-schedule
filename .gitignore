@@ -8,6 +8,9 @@ node_modules/
 dist/
 web-build/
 expo-env.d.ts
+.env
+populateAchievements.js
+serviceAccountKey.json
 
 # Native
 *.orig.*

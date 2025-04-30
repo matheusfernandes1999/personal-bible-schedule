@@ -1,0 +1,1462 @@
+[
+    {
+      "Dia": "1",
+      "Leitura": "Gênesis 1,2"
+    },
+    {
+      "Dia": "2",
+      "Leitura": "Gênesis 3-5"
+    },
+    {
+      "Dia": "3",
+      "Leitura": "Gênesis 6-9"
+    },
+    {
+      "Dia": "4",
+      "Leitura": "Gênesis 10, Gênesis 11"
+    },
+    {
+      "Dia": "5",
+      "Leitura": "Gênesis 12-15"
+    },
+    {
+      "Dia": "6",
+      "Leitura": "Gênesis 16-19"
+    },
+    {
+      "Dia": "7",
+      "Leitura": "Gênesis 20-22"
+    },
+    {
+      "Dia": "8",
+      "Leitura": "Gênesis 23-26"
+    },
+    {
+      "Dia": "9",
+      "Leitura": "Gênesis 27-29"
+    },
+    {
+      "Dia": "10",
+      "Leitura": "Gênesis 30-32"
+    },
+    {
+      "Dia": "11",
+      "Leitura": "Gênesis 33-36"
+    },
+    {
+      "Dia": "12",
+      "Leitura": "Gênesis 37-39"
+    },
+    {
+      "Dia": "13",
+      "Leitura": "Gênesis 40-42"
+    },
+    {
+      "Dia": "14",
+      "Leitura": "Gênesis 43-46"
+    },
+    {
+      "Dia": "15",
+      "Leitura": "Gênesis 47-50"
+    },
+    {
+      "Dia": "16",
+      "Leitura": "Jó 1-4"
+    },
+    {
+      "Dia": "17",
+      "Leitura": "Jó 5-7"
+    },
+    {
+      "Dia": "18",
+      "Leitura": "Jó 8-10"
+    },
+    {
+      "Dia": "19",
+      "Leitura": "Jó 11-13"
+    },
+    {
+      "Dia": "20",
+      "Leitura": "Jó 14-17"
+    },
+    {
+      "Dia": "21",
+      "Leitura": "Jó 18-20"
+    },
+    {
+      "Dia": "22",
+      "Leitura": "Jó 21-24"
+    },
+    {
+      "Dia": "23",
+      "Leitura": "Jó 25-27"
+    },
+    {
+      "Dia": "24",
+      "Leitura": "Jó 28-31"
+    },
+    {
+      "Dia": "25",
+      "Leitura": "Jó 32-34"
+    },
+    {
+      "Dia": "26",
+      "Leitura": "Jó 35-37"
+    },
+    {
+      "Dia": "27",
+      "Leitura": "Jó 38-42"
+    },
+    {
+      "Dia": "28",
+      "Leitura": "Êxodo 1-4"
+    },
+    {
+      "Dia": "29",
+      "Leitura": "Êxodo 5-7"
+    },
+    {
+      "Dia": "30",
+      "Leitura": "Êxodo 8-10"
+    },
+    {
+      "Dia": "31",
+      "Leitura": "Êxodo 11-13"
+    },
+    {
+      "Dia": "32",
+      "Leitura": "Êxodo 14-17"
+    },
+    {
+      "Dia": "33",
+      "Leitura": "Êxodo 18-20"
+    },
+    {
+      "Dia": "34",
+      "Leitura": "Êxodo 21-24"
+    },
+    {
+      "Dia": "35",
+      "Leitura": "Êxodo 25-27"
+    },
+    {
+      "Dia": "36",
+      "Leitura": "Êxodo 28-31"
+    },
+    {
+      "Dia": "37",
+      "Leitura": "Êxodo 32-34"
+    },
+    {
+      "Dia": "38",
+      "Leitura": "Êxodo 35-37"
+    },
+    {
+      "Dia": "39",
+      "Leitura": "Êxodo 38-40"
+    },
+    {
+      "Dia": "40",
+      "Leitura": "Levítico 1-4"
+    },
+    {
+      "Dia": "41",
+      "Leitura": "Levítico 5-7"
+    },
+    {
+      "Dia": "42",
+      "Leitura": "Levítico 8-10"
+    },
+    {
+      "Dia": "43",
+      "Leitura": "Levítico 11-13"
+    },
+    {
+      "Dia": "44",
+      "Leitura": "Levítico 14-16"
+    },
+    {
+      "Dia": "45",
+      "Leitura": "Levítico 17-19"
+    },
+    {
+      "Dia": "46",
+      "Leitura": "Levítico 20-22, Salmos 95"
+    },
+    {
+      "Dia": "47",
+      "Leitura": "Levítico 23-27"
+    },
+    {
+      "Dia": "48",
+      "Leitura": "Números 1-3"
+    },
+    {
+      "Dia": "49",
+      "Leitura": "Números 4-6"
+    },
+    {
+      "Dia": "50",
+      "Leitura": "Números 7-10"
+    },
+    {
+      "Dia": "51",
+      "Leitura": "Números 11-12:16, Salmos 90"
+    },
+    {
+      "Dia": "52",
+      "Leitura": "Salmos 91, Números 12-14"
+    },
+    {
+      "Dia": "53",
+      "Leitura": "Números 15-17"
+    },
+    {
+      "Dia": "54",
+      "Leitura": "Números 18-20"
+    },
+    {
+      "Dia": "55",
+      "Leitura": "Números 21-24"
+    },
+    {
+      "Dia": "56",
+      "Leitura": "Números 25-27"
+    },
+    {
+      "Dia": "57",
+      "Leitura": "Números 28-30"
+    },
+    {
+      "Dia": "58",
+      "Leitura": "Números 31-33"
+    },
+    {
+      "Dia": "59",
+      "Leitura": "Números 34-36"
+    },
+    {
+      "Dia": "60",
+      "Leitura": "Deuteronômio 1-3"
+    },
+    {
+      "Dia": "61",
+      "Leitura": "Deuteronômio 4-6"
+    },
+    {
+      "Dia": "62",
+      "Leitura": "Deuteronômio 7-9"
+    },
+    {
+      "Dia": "63",
+      "Leitura": "Deuteronômio 10-12"
+    },
+    {
+      "Dia": "64",
+      "Leitura": "Deuteronômio 13-16"
+    },
+    {
+      "Dia": "65",
+      "Leitura": "Deuteronômio 17-19"
+    },
+    {
+      "Dia": "66",
+      "Leitura": "Deuteronômio 20-22"
+    },
+    {
+      "Dia": "67",
+      "Leitura": "Deuteronômio 23-25"
+    },
+    {
+      "Dia": "68",
+      "Leitura": "Deuteronômio 26-28"
+    },
+    {
+      "Dia": "69",
+      "Leitura": "Deuteronômio 29-31"
+    },
+    {
+      "Dia": "70",
+      "Leitura": "Deuteronômio 32-34"
+    },
+    {
+      "Dia": "71",
+      "Leitura": "Josué 1-3"
+    },
+    {
+      "Dia": "72",
+      "Leitura": "Josué 4-6"
+    },
+    {
+      "Dia": "73",
+      "Leitura": "Josué 7-9"
+    },
+    {
+      "Dia": "74",
+      "Leitura": "Josué 10-12"
+    },
+    {
+      "Dia": "75",
+      "Leitura": "Josué 13-15"
+    },
+    {
+      "Dia": "76",
+      "Leitura": "Josué 16-18"
+    },
+    {
+      "Dia": "77",
+      "Leitura": "Josué 19-21"
+    },
+    {
+      "Dia": "78",
+      "Leitura": "Josué 22-24"
+    },
+    {
+      "Dia": "79",
+      "Leitura": "Juízes 1-4"
+    },
+    {
+      "Dia": "80",
+      "Leitura": "Juízes 5-8"
+    },
+    {
+      "Dia": "81",
+      "Leitura": "Juízes 9-12"
+    },
+    {
+      "Dia": "82",
+      "Leitura": "Juízes 13-15"
+    },
+    {
+      "Dia": "83",
+      "Leitura": "Juízes 16-18"
+    },
+    {
+      "Dia": "84",
+      "Leitura": "Juízes 19-21"
+    },
+    {
+      "Dia": "85",
+      "Leitura": "Rute 1-4"
+    },
+    {
+      "Dia": "86",
+      "Leitura": "1 Samuel 1-4"
+    },
+    {
+      "Dia": "87",
+      "Leitura": "1 Samuel 5-8"
+    },
+    {
+      "Dia": "88",
+      "Leitura": "1 Samuel 9-12"
+    },
+    {
+      "Dia": "89",
+      "Leitura": "1 Samuel 13-16"
+    },
+    {
+      "Dia": "90",
+      "Leitura": "1 Samuel 17, 18, Salmos 23"
+    },
+    {
+      "Dia": "91",
+      "Leitura": "1 Samuel 19:1-18, Salmos 11, Salmos 59"
+    },
+    {
+      "Dia": "92",
+      "Leitura": "1 Samuel 19:19-24, 1 Samuel 20, 1 Samuel 21, Salmos 56, Salmos 142"
+    },
+    {
+      "Dia": "93",
+      "Leitura": "1 Samuel 22, Salmos 17, Salmos 34, Salmos 35"
+    },
+    {
+      "Dia": "94",
+      "Leitura": "Salmos 52, Salmos 109, Salmos 140"
+    },
+    {
+      "Dia": "95",
+      "Leitura": "Salmos 31, Salmos 64, 1 Samuel 23:1-29"
+    },
+    {
+      "Dia": "96",
+      "Leitura": "Salmos 54, Salmos 22, 1 Samuel 24"
+    },
+    {
+      "Dia": "97",
+      "Leitura": "Salmos 63, Salmos 12, Salmos 57"
+    },
+    {
+      "Dia": "98",
+      "Leitura": "Salmos 58, Salmos 120, 1 Samuel 25"
+    },
+    {
+      "Dia": "99",
+      "Leitura": "Salmos 141, 1 Samuel 26, 1 Samuel 27"
+    },
+    {
+      "Dia": "100",
+      "Leitura": "1 Samuel 28, 1 Samuel 29, 1 Samuel 30"
+    },
+    {
+      "Dia": "101",
+      "Leitura": "1 Samuel 31, 2 Samuel 1, 2 Samuel 2"
+    },
+    {
+      "Dia": "102",
+      "Leitura": "Salmos 101, 2 Samuel 3, 2 Samuel 4"
+    },
+    {
+      "Dia": "103",
+      "Leitura": "2 Samuel 5, Salmos 139, 2 Samuel 6"
+    },
+    {
+      "Dia": "104",
+      "Leitura": "Salmos 78, Salmos 96"
+    },
+    {
+      "Dia": "105",
+      "Leitura": "Salmos 15, Salmos 24, Salmos 68"
+    },
+    {
+      "Dia": "106",
+      "Leitura": "Salmos 132, Salmos 133"
+    },
+    {
+      "Dia": "107",
+      "Leitura": "Salmos 106, Salmos 105"
+    },
+    {
+      "Dia": "108",
+      "Leitura": "2 Samuel 7, Salmos 16, Salmos 2"
+    },
+    {
+      "Dia": "109",
+      "Leitura": "Salmos 110, 2 Samuel 8, Salmos 97, Salmos 98"
+    },
+    {
+      "Dia": "110",
+      "Leitura": "Salmos 108, Salmos 117, Salmos 118"
+    },
+    {
+      "Dia": "111",
+      "Leitura": "Salmos 60, Salmos 9, Salmos 20"
+    },
+    {
+      "Dia": "112",
+      "Leitura": "2 Samuel 9, 2 Samuel 10, 2 Samuel 11"
+    },
+    {
+      "Dia": "113",
+      "Leitura": "2 Samuel 12, Salmos 6, Salmos 32"
+    },
+    {
+      "Dia": "114",
+      "Leitura": "Salmos 33, Salmos 38, Salmos 39, Salmos 21"
+    },
+    {
+      "Dia": "115",
+      "Leitura": "Salmos 40, Salmos 41, Salmos 51"
+    },
+    {
+      "Dia": "116",
+      "Leitura": "Salmos 103, Salmos 104, 2 Samuel 13"
+    },
+    {
+      "Dia": "117",
+      "Leitura": "Salmos 55, 2 Samuel 14, 2 Samuel 15"
+    },
+    {
+      "Dia": "118",
+      "Leitura": "2 Samuel 16, Salmos 7, 2 Samuel 17"
+    },
+    {
+      "Dia": "119",
+      "Leitura": "Salmos 3, Salmos 4, Salmos 42"
+    },
+    {
+      "Dia": "120",
+      "Leitura": "Salmos 43, Salmos 5, Salmos 8"
+    },
+    {
+      "Dia": "121",
+      "Leitura": "Salmos 28, Salmos 61, Salmos 62"
+    },
+    {
+      "Dia": "122",
+      "Leitura": "Salmos 69, Salmos 70, Salmos 71, Salmos 86"
+    },
+    {
+      "Dia": "123",
+      "Leitura": "Salmos 143, 2 Samuel 18, 2 Samuel 19"
+    },
+    {
+      "Dia": "124",
+      "Leitura": "Salmos 122, Salmos 26, Salmos 27"
+    },
+    {
+      "Dia": "125",
+      "Leitura": "Salmos 141, Salmos 65, 2 Samuel 20"
+    },
+    {
+      "Dia": "126",
+      "Leitura": "2 Samuel 21, Salmos 29, Salmos 30"
+    },
+    {
+      "Dia": "127",
+      "Leitura": "Salmos 131, 18, 2 Samuel 22-24, 1 Reis 1"
+    },
+    {
+      "Dia": "128",
+      "Leitura": "Salmos 72, Salmos 145, 1 Reis 2"
+    },
+    {
+      "Dia": "129",
+      "Leitura": "1 Reis 3, 1 Reis 4, 1 Reis 5"
+    },
+    {
+      "Dia": "130",
+      "Leitura": "Salmos 99,100, 127, 128"
+    },
+    {
+      "Dia": "131",
+      "Leitura": "Provérbios 1-4"
+    },
+    {
+      "Dia": "132",
+      "Leitura": "Provérbios 5-7"
+    },
+    {
+      "Dia": "133",
+      "Leitura": "Provérbios 8-11"
+    },
+    {
+      "Dia": "134",
+      "Leitura": "Provérbios 12-15"
+    },
+    {
+      "Dia": "135",
+      "Leitura": "Provérbios 16-19"
+    },
+    {
+      "Dia": "136",
+      "Leitura": "Provérbios 20-23"
+    },
+    {
+      "Dia": "137",
+      "Leitura": "Provérbios 24-27"
+    },
+    {
+      "Dia": "138",
+      "Leitura": "Provérbios 28-30"
+    },
+    {
+      "Dia": "139",
+      "Leitura": "Provérbios 31, Eclesiastes 1,2"
+    },
+    {
+      "Dia": "140",
+      "Leitura": "Eclesiastes 3-5"
+    },
+    {
+      "Dia": "141",
+      "Leitura": "Eclesiastes 6-8"
+    },
+    {
+      "Dia": "142",
+      "Leitura": "Eclesiastes 9-11"
+    },
+    {
+      "Dia": "143",
+      "Leitura": "Eclesiastes 12, Cânticos 1,2"
+    },
+    {
+      "Dia": "144",
+      "Leitura": "Cânticos 3-5"
+    },
+    {
+      "Dia": "145",
+      "Leitura": "Cânticos 6-8"
+    },
+    {
+      "Dia": "146",
+      "Leitura": "1 Reis 6-8"
+    },
+    {
+      "Dia": "147",
+      "Leitura": "1 Reis 9-11"
+    },
+    {
+      "Dia": "148",
+      "Leitura": "1 Reis 12-14"
+    },
+    {
+      "Dia": "149",
+      "Leitura": "1 Reis 15-17"
+    },
+    {
+      "Dia": "150",
+      "Leitura": "1 Reis 18-20"
+    },
+    {
+      "Dia": "151",
+      "Leitura": "1 Reis 21,22, 2 Reis 1"
+    },
+    {
+      "Dia": "152",
+      "Leitura": "2 Reis 2-4"
+    },
+    {
+      "Dia": "153",
+      "Leitura": "2 Reis 5-7"
+    },
+    {
+      "Dia": "154",
+      "Leitura": "2 Reis 8-10"
+    },
+    {
+      "Dia": "155",
+      "Leitura": "2 Reis 11-14:20"
+    },
+    {
+      "Dia": "156",
+      "Leitura": "Joel 1-3"
+    },
+    {
+      "Dia": "157",
+      "Leitura": "2 Reis 14:21-25, Jonas 1-4"
+    },
+    {
+      "Dia": "158",
+      "Leitura": "2 Reis 14:26-29, Amós 1-3"
+    },
+    {
+      "Dia": "159",
+      "Leitura": "Amós 4-6"
+    },
+    {
+      "Dia": "160",
+      "Leitura": "Amós 7-9"
+    },
+    {
+      "Dia": "161",
+      "Leitura": "2 Reis 15-17"
+    },
+    {
+      "Dia": "162",
+      "Leitura": "Oséias 1-4"
+    },
+    {
+      "Dia": "163",
+      "Leitura": "Oséias 5-7"
+    },
+    {
+      "Dia": "164",
+      "Leitura": "Oséias 8-10"
+    },
+    {
+      "Dia": "165",
+      "Leitura": "Oséias 11-14"
+    },
+    {
+      "Dia": "166",
+      "Leitura": "2 Reis 18, Salmos 44"
+    },
+    {
+      "Dia": "167",
+      "Leitura": "2 Reis 19:1-34, Salmos 73"
+    },
+    {
+      "Dia": "168",
+      "Leitura": "2 Reis 19:35-37, Salmos 92, 93"
+    },
+    {
+      "Dia": "169",
+      "Leitura": "Salmos 46, 75, 76"
+    },
+    {
+      "Dia": "170",
+      "Leitura": "Isaías 1-3"
+    },
+    {
+      "Dia": "171",
+      "Leitura": "Isaías 4-6"
+    },
+    {
+      "Dia": "172",
+      "Leitura": "Isaías 7-9"
+    },
+    {
+      "Dia": "173",
+      "Leitura": "Isaías 10-13"
+    },
+    {
+      "Dia": "174",
+      "Leitura": "Isaías 14-17"
+    },
+    {
+      "Dia": "175",
+      "Leitura": "Isaías 18-21"
+    },
+    {
+      "Dia": "176",
+      "Leitura": "Isaías 22-25"
+    },
+    {
+      "Dia": "177",
+      "Leitura": "Isaías 26-28"
+    },
+    {
+      "Dia": "178",
+      "Leitura": "Isaías 29-30"
+    },
+    {
+      "Dia": "179",
+      "Leitura": "Isaías 31-33"
+    },
+    {
+      "Dia": "180",
+      "Leitura": "Isaías 34-36"
+    },
+    {
+      "Dia": "181",
+      "Leitura": "Isaías 37-39"
+    },
+    {
+      "Dia": "182",
+      "Leitura": "Isaías 40-42"
+    },
+    {
+      "Dia": "183",
+      "Leitura": "Isaías 43-45"
+    },
+    {
+      "Dia": "184",
+      "Leitura": "Isaías 46-48"
+    },
+    {
+      "Dia": "185",
+      "Leitura": "Isaías 49-51"
+    },
+    {
+      "Dia": "186",
+      "Leitura": "Isaías 52-54"
+    },
+    {
+      "Dia": "187",
+      "Leitura": "Isaías 55-57"
+    },
+    {
+      "Dia": "188",
+      "Leitura": "Isaías 58-60"
+    },
+    {
+      "Dia": "189",
+      "Leitura": "Isaías 61-63"
+    },
+    {
+      "Dia": "190",
+      "Leitura": "Isaías 64-66"
+    },
+    {
+      "Dia": "191",
+      "Leitura": "Miquéias 1-4"
+    },
+    {
+      "Dia": "192",
+      "Leitura": "Miquéias 5-7"
+    },
+    {
+      "Dia": "193",
+      "Leitura": "Naum 1-3"
+    },
+    {
+      "Dia": "194",
+      "Leitura": "2 Reis 20,21"
+    },
+    {
+      "Dia": "195",
+      "Leitura": "Sofonias 1-3"
+    },
+    {
+      "Dia": "196",
+      "Leitura": "Habacuque 1-3"
+    },
+    {
+      "Dia": "197",
+      "Leitura": "2 Reis 22-23, Salmos 74"
+    },
+    {
+      "Dia": "198",
+      "Leitura": "Salmos 79, 94, 2 Reis 24:1-16"
+    },
+    {
+      "Dia": "199",
+      "Leitura": "Salmos 88, 2 Reis 24:17-20, 2 Reis 25"
+    },
+    {
+      "Dia": "200",
+      "Leitura": "Obadias, Jeremias 1,2"
+    },
+    {
+      "Dia": "201",
+      "Leitura": "Jeremias 3-5"
+    },
+    {
+      "Dia": "202",
+      "Leitura": "Jeremias 6-8"
+    },
+    {
+      "Dia": "203",
+      "Leitura": "Jeremias 9-12"
+    },
+    {
+      "Dia": "204",
+      "Leitura": "Jeremias 13, Salmos 13,14"
+    },
+    {
+      "Dia": "205",
+      "Leitura": "Salmos 36, 37, 49"
+    },
+    {
+      "Dia": "206",
+      "Leitura": "Salmos 53, 77, 89"
+    },
+    {
+      "Dia": "207",
+      "Leitura": "Salmos 123"
+    },
+    {
+      "Dia": "208",
+      "Leitura": "Salmos 25, 50, 67"
+    },
+    {
+      "Dia": "209",
+      "Leitura": "Salmos 102, 130"
+    },
+    {
+      "Dia": "210",
+      "Leitura": "Jeremias 14-16"
+    },
+    {
+      "Dia": "211",
+      "Leitura": "Jeremias 17-20"
+    },
+    {
+      "Dia": "212",
+      "Leitura": "Jeremias 21-23"
+    },
+    {
+      "Dia": "213",
+      "Leitura": "Jeremias 24-26"
+    },
+    {
+      "Dia": "214",
+      "Leitura": "Jeremias 27-29"
+    },
+    {
+      "Dia": "215",
+      "Leitura": "Jeremias 30-32"
+    },
+    {
+      "Dia": "216",
+      "Leitura": "Jeremias 33-36"
+    },
+    {
+      "Dia": "217",
+      "Leitura": "Jeremias 37-39"
+    },
+    {
+      "Dia": "218",
+      "Leitura": "Jeremias 40-42"
+    },
+    {
+      "Dia": "219",
+      "Leitura": "Jeremias 43-46"
+    },
+    {
+      "Dia": "220",
+      "Leitura": "Jeremias 47-49"
+    },
+    {
+      "Dia": "221",
+      "Leitura": "Jeremias 50-52"
+    },
+    {
+      "Dia": "222",
+      "Leitura": "Lamentações 1-5"
+    },
+    {
+      "Dia": "223",
+      "Leitura": "1 Crônicas 1-3"
+    },
+    {
+      "Dia": "224",
+      "Leitura": "1 Crônicas 4-6"
+    },
+    {
+      "Dia": "225",
+      "Leitura": "1 Crônicas 7-9"
+    },
+    {
+      "Dia": "226",
+      "Leitura": "1 Crônicas 10-13"
+    },
+    {
+      "Dia": "227",
+      "Leitura": "1 Crônicas 14-16"
+    },
+    {
+      "Dia": "228",
+      "Leitura": "1 Crônicas 17-19"
+    },
+    {
+      "Dia": "229",
+      "Leitura": "1 Crônicas 20-23"
+    },
+    {
+      "Dia": "230",
+      "Leitura": "1 Crônicas 24-26"
+    },
+    {
+      "Dia": "231",
+      "Leitura": "1 Crônicas 27-29"
+    },
+    {
+      "Dia": "232",
+      "Leitura": "2 Crônicas 1-3"
+    },
+    {
+      "Dia": "233",
+      "Leitura": "2 Crônicas 4-6"
+    },
+    {
+      "Dia": "234",
+      "Leitura": "2 Crônicas 7-9"
+    },
+    {
+      "Dia": "235",
+      "Leitura": "2 Crônicas 10-13"
+    },
+    {
+      "Dia": "236",
+      "Leitura": "2 Crônicas 14-16"
+    },
+    {
+      "Dia": "237",
+      "Leitura": "2 Crônicas 17-19"
+    },
+    {
+      "Dia": "238",
+      "Leitura": "Salmos 82, 2 Crônicas 20, Salmos 83"
+    },
+    {
+      "Dia": "239",
+      "Leitura": "Salmos 47, 48, 115"
+    },
+    {
+      "Dia": "240",
+      "Leitura": "2 Crônicas 21-24"
+    },
+    {
+      "Dia": "241",
+      "Leitura": "2 Crônicas 25-27"
+    },
+    {
+      "Dia": "242",
+      "Leitura": "2 Crônicas 28, 29, Salmos 80"
+    },
+    {
+      "Dia": "243",
+      "Leitura": "2 Crônicas 30-32"
+    },
+    {
+      "Dia": "244",
+      "Leitura": "2 Crônicas 33-36"
+    },
+    {
+      "Dia": "245",
+      "Leitura": "Ezequiel 1-3"
+    },
+    {
+      "Dia": "246",
+      "Leitura": "Ezequiel 4-7"
+    },
+    {
+      "Dia": "247",
+      "Leitura": "Ezequiel 8-11"
+    },
+    {
+      "Dia": "248",
+      "Leitura": "Ezequiel 12-14"
+    },
+    {
+      "Dia": "249",
+      "Leitura": "Ezequiel 15-18"
+    },
+    {
+      "Dia": "250",
+      "Leitura": "Ezequiel 19-21"
+    },
+    {
+      "Dia": "251",
+      "Leitura": "Ezequiel 22-24"
+    },
+    {
+      "Dia": "252",
+      "Leitura": "Ezequiel 25-27"
+    },
+    {
+      "Dia": "253",
+      "Leitura": "Ezequiel 28-30"
+    },
+    {
+      "Dia": "254",
+      "Leitura": "Ezequiel 31-33"
+    },
+    {
+      "Dia": "255",
+      "Leitura": "Ezequiel 34-36"
+    },
+    {
+      "Dia": "256",
+      "Leitura": "Ezequiel 37-39"
+    },
+    {
+      "Dia": "257",
+      "Leitura": "Ezequiel 40-42"
+    },
+    {
+      "Dia": "258",
+      "Leitura": "Ezequiel 43-45"
+    },
+    {
+      "Dia": "259",
+      "Leitura": "Ezequiel 46-48"
+    },
+    {
+      "Dia": "260",
+      "Leitura": "Daniel 1-3"
+    },
+    {
+      "Dia": "261",
+      "Leitura": "Daniel 4-6"
+    },
+    {
+      "Dia": "262",
+      "Leitura": "Daniel 7-9"
+    },
+    {
+      "Dia": "263",
+      "Leitura": "Daniel 10-12"
+    },
+    {
+      "Dia": "264",
+      "Leitura": "Esdras 1, Salmos 85,126, 137"
+    },
+    {
+      "Dia": "265",
+      "Leitura": "Esdras 2, Salmos 1, 121"
+    },
+    {
+      "Dia": "266",
+      "Leitura": "Salmos 119"
+    },
+    {
+      "Dia": "267",
+      "Leitura": "Esdras 3:1-7, Salmos 107, 111"
+    },
+    {
+      "Dia": "268",
+      "Leitura": "Salmos 112, 113, 114"
+    },
+    {
+      "Dia": "269",
+      "Leitura": "Esdras 3:8-13, Salmos 66, 84,116"
+    },
+    {
+      "Dia": "270",
+      "Leitura": "Salmos 125, 129, Esdras 4, Ageu 1,2"
+    },
+    {
+      "Dia": "271",
+      "Leitura": "Zacarias 1-3"
+    },
+    {
+      "Dia": "272",
+      "Leitura": "Zacarias 4-6"
+    },
+    {
+      "Dia": "273",
+      "Leitura": "Zacarias 7-10"
+    },
+    {
+      "Dia": "274",
+      "Leitura": "Zacarias 11-14"
+    },
+    {
+      "Dia": "275",
+      "Leitura": "Esdras 5, 6:1-15, Salmos 138"
+    },
+    {
+      "Dia": "276",
+      "Leitura": "Esdras 6:16-22, Salmos 81, 134"
+    },
+    {
+      "Dia": "277",
+      "Leitura": "Salmos 135, 136, 146"
+    },
+    {
+      "Dia": "278",
+      "Leitura": "Salmos 87, Esdras 7-8"
+    },
+    {
+      "Dia": "279",
+      "Leitura": "Esdras 9-10, Ester 1-2"
+    },
+    {
+      "Dia": "280",
+      "Leitura": "Salmos 10, 45, Ester 3, 4:1-9"
+    },
+    {
+      "Dia": "281",
+      "Leitura": "Ester 4:10-17, Ester 5-7"
+    },
+    {
+      "Dia": "282",
+      "Leitura": "Ester 8-10, Salmos 124"
+    },
+    {
+      "Dia": "283",
+      "Leitura": "Neemias 1-3"
+    },
+    {
+      "Dia": "284",
+      "Leitura": "Salmos 147-149"
+    },
+    {
+      "Dia": "285",
+      "Leitura": "Neemias 4-6"
+    },
+    {
+      "Dia": "286",
+      "Leitura": "Salmos 150, Salmos 19, Neemias 7"
+    },
+    {
+      "Dia": "287",
+      "Leitura": "Neemias 8-10"
+    },
+    {
+      "Dia": "288",
+      "Leitura": "Neemias 11-13"
+    },
+    {
+      "Dia": "289",
+      "Leitura": "Malaquias 1-4"
+    },
+    {
+      "Dia": "290",
+      "Leitura": "Mateus 1-4"
+    },
+    {
+      "Dia": "291",
+      "Leitura": "Mateus 5-7"
+    },
+    {
+      "Dia": "292",
+      "Leitura": "Mateus 8-11"
+    },
+    {
+      "Dia": "293",
+      "Leitura": "Mateus 12-15"
+    },
+    {
+      "Dia": "294",
+      "Leitura": "Mateus 16-19"
+    },
+    {
+      "Dia": "295",
+      "Leitura": "Mateus 20-22"
+    },
+    {
+      "Dia": "296",
+      "Leitura": "Mateus 23-25"
+    },
+    {
+      "Dia": "297",
+      "Leitura": "Mateus 26-28"
+    },
+    {
+      "Dia": "298",
+      "Leitura": "Marcos 1-3"
+    },
+    {
+      "Dia": "299",
+      "Leitura": "Marcos 4-6"
+    },
+    {
+      "Dia": "300",
+      "Leitura": "Marcos 7-10"
+    },
+    {
+      "Dia": "301",
+      "Leitura": "Marcos 11-13"
+    },
+    {
+      "Dia": "302",
+      "Leitura": "Marcos 14-16"
+    },
+    {
+      "Dia": "303",
+      "Leitura": "Lucas 1-4"
+    },
+    {
+      "Dia": "304",
+      "Leitura": "Lucas 5-8"
+    },
+    {
+      "Dia": "305",
+      "Leitura": "Lucas 9-12"
+    },
+    {
+      "Dia": "306",
+      "Leitura": "Lucas 13-16"
+    },
+    {
+      "Dia": "307",
+      "Leitura": "Lucas 17-20"
+    },
+    {
+      "Dia": "308",
+      "Leitura": "Lucas 21-24"
+    },
+    {
+      "Dia": "309",
+      "Leitura": "João 1-4"
+    },
+    {
+      "Dia": "310",
+      "Leitura": "João 5-8"
+    },
+    {
+      "Dia": "311",
+      "Leitura": "João 9-12"
+    },
+    {
+      "Dia": "312",
+      "Leitura": "João 13-16"
+    },
+    {
+      "Dia": "313",
+      "Leitura": "João 17-21"
+    },
+    {
+      "Dia": "314",
+      "Leitura": "Atos 1-3"
+    },
+    {
+      "Dia": "315",
+      "Leitura": "Atos 4-6"
+    },
+    {
+      "Dia": "316",
+      "Leitura": "Atos 7-9"
+    },
+    {
+      "Dia": "317",
+      "Leitura": "Atos 10-14"
+    },
+    {
+      "Dia": "318",
+      "Leitura": "Tiago 1-2"
+    },
+    {
+      "Dia": "319",
+      "Leitura": "Tiago 3-5"
+    },
+    {
+      "Dia": "320",
+      "Leitura": "Gálatas 1-3"
+    },
+    {
+      "Dia": "321",
+      "Leitura": "Gálatas 4-6"
+    },
+    {
+      "Dia": "322",
+      "Leitura": "Atos 15 a 18:11"
+    },
+    {
+      "Dia": "323",
+      "Leitura": "1 Tessalonicenses 1-5"
+    },
+    {
+      "Dia": "324",
+      "Leitura": "2 Tessalonicenses 1-3, Atos 18:12, Atos 19:10"
+    },
+    {
+      "Dia": "325",
+      "Leitura": "1 Coríntios 1-4"
+    },
+    {
+      "Dia": "326",
+      "Leitura": "1 Coríntios 5-8"
+    },
+    {
+      "Dia": "327",
+      "Leitura": "1 Coríntios 9-12"
+    },
+    {
+      "Dia": "328",
+      "Leitura": "1 Coríntios 13-16"
+    },
+    {
+      "Dia": "329",
+      "Leitura": "Atos 19:11-20:1, 2 Coríntios 1-3"
+    },
+    {
+      "Dia": "330",
+      "Leitura": "2 Coríntios 4-6"
+    },
+    {
+      "Dia": "331",
+      "Leitura": "2 Coríntios 7-9"
+    },
+    {
+      "Dia": "332",
+      "Leitura": "2 Coríntios 10-13, Atos 20:2"
+    },
+    {
+      "Dia": "333",
+      "Leitura": "Romanos 1-4"
+    },
+    {
+      "Dia": "334",
+      "Leitura": "Romanos 5-6"
+    },
+    {
+      "Dia": "335",
+      "Leitura": "Romanos 7-9"
+    },
+    {
+      "Dia": "336",
+      "Leitura": "Romanos 10-12"
+    },
+    {
+      "Dia": "337",
+      "Leitura": "Romanos 13-16"
+    },
+    {
+      "Dia": "338",
+      "Leitura": "Atos 20-22"
+    },
+    {
+      "Dia": "339",
+      "Leitura": "Atos 23-25"
+    },
+    {
+      "Dia": "340",
+      "Leitura": "Atos 26-28"
+    },
+    {
+      "Dia": "341",
+      "Leitura": "Efésios 1-3"
+    },
+    {
+      "Dia": "342",
+      "Leitura": "Efésios 4-6"
+    },
+    {
+      "Dia": "343",
+      "Leitura": "Filipenses 1-4"
+    },
+    {
+      "Dia": "343",
+      "Leitura": "Colossenses 1-4"
+    },
+    {
+      "Dia": "344",
+      "Leitura": "Hebreus 1-4"
+    },
+    {
+      "Dia": "345",
+      "Leitura": "Hebreus 5-7"
+    },
+    {
+      "Dia": "346",
+      "Leitura": "Hebreus 8-10"
+    },
+    {
+      "Dia": "347",
+      "Leitura": "Hebreus 11-13"
+    },
+    {
+      "Dia": "348",
+      "Leitura": "Filemon 1, 1 Pedro 1-2"
+    },
+    {
+      "Dia": "349",
+      "Leitura": "1 Pedro 3-5"
+    },
+    {
+      "Dia": "350",
+      "Leitura": "2 Pedro 1-3"
+    },
+    {
+      "Dia": "351",
+      "Leitura": "1 Timóteo 1-3"
+    },
+    {
+      "Dia": "352",
+      "Leitura": "1 Timóteo 4-6"
+    },
+    {
+      "Dia": "353",
+      "Leitura": "Tito 1-3"
+    },
+    {
+      "Dia": "354",
+      "Leitura": "2 Timóteo 1-4"
+    },
+    {
+      "Dia": "355",
+      "Leitura": "1 João 1-2"
+    },
+    {
+      "Dia": "356",
+      "Leitura": "1 João 3-5"
+    },
+    {
+      "Dia": "357",
+      "Leitura": "2 João, 3 João, Judas"
+    },
+    {
+      "Dia": "358",
+      "Leitura": "Apocalipse 1-3"
+    },
+    {
+      "Dia": "359",
+      "Leitura": "Apocalipse 4-6"
+    },
+    {
+      "Dia": "360",
+      "Leitura": "Apocalipse 7-9"
+    },
+    {
+      "Dia": "361",
+      "Leitura": "Apocalipse 10-12"
+    },
+    {
+      "Dia": "362",
+      "Leitura": "Apocalipse 13-15"
+    },
+    {
+      "Dia": "363",
+      "Leitura": "Apocalipse 16-18"
+    },
+    {
+      "Dia": "364",
+      "Leitura": "Apocalipse 19-22"
+    }
+  ]
