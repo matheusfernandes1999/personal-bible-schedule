@@ -1,6 +1,7 @@
 // types.ts
 import { User as FirebaseUser } from "firebase/auth";
-import { Timestamp } from "firebase/firestore"; // Importa Timestamp
+import { FieldValue, Timestamp } from "firebase/firestore"; // Importa Timestamp
+import { GeoJsonObject, Feature, Geometry, FeatureCollection } from 'geojson'; // Import Feature type
 
 /**
  * Representa os dados de um usuário armazenados no Firestore.
@@ -58,25 +59,29 @@ export interface PersonData {
  * Representa um cartão de território.
  * Armazenado como subcoleção em /congregations/{congregationId}/territoryCards/{cardId}
  */
+
 export interface TerritoryCardData {
-  id?: string;
+  id: string; // Document ID from Firestore
   city: string;
   section: string;
   cardNumber: string;
   notes?: string;
-  imageUrl?: string | null;
+  imageUrl?: string | null; // URL if image is used
+  mapId?: string | null;    // Firestore Document ID if GeoJSON map is used
   status: "Disponível" | "Em campo" | "Não trabalhar";
-  lastWorkedBy?: string | null;
-  lastWorkedByName?: string | null;
-  lastReturnDate?: Timestamp | Date | null;
-  createdAt: Timestamp | Date;
-  createdBy: string;
+  lastWorkedBy?: string | null; // User ID
+  lastWorkedByName?: string | null; // User Name
+  lastReturnDate?: Timestamp | null; // Firestore Timestamp
+  createdAt: Timestamp | FieldValue; // Allow FieldValue for serverTimestamp on creation
+  createdBy: string; // User ID
+  geojsonData: string
 }
 
 /**
  * Representa um registro de trabalho de território.
  * Armazenado como subcoleção em /congregations/{congregationId}/territoryRecords/{recordId}
  */
+
 export interface TerritoryRecordData {
   id?: string;
   cardId: string;
@@ -91,6 +96,7 @@ export interface TerritoryRecordData {
 /**
  * Argumentos para as funções de login e signup.
  */
+
 export interface AuthCredentials {
   email?: string;
   password?: string;
@@ -138,7 +144,6 @@ export interface PublicationItem {
   itemCode: string; // Codigo_Item do CSV
   description: string; // Descricao_Item do CSV
   category: string; // Categoria traduzida para português
- // month: string; // <<< ADICIONADO: Mês/Ano do inventário (ex: "January 2025" ou "2025-01")
   currentQuantity: number | null; // Quantidade_Atual
   categoryPT: string;
   monthlyMovement?: number | null; // Movimento_Medio_Mensal
@@ -153,7 +158,6 @@ export const PUBLICATION_CATEGORY_TRANSLATIONS: { [key: string]: string } = {
   'Forms and Supplies': 'Formulários e Materiais',
   'Tracts': 'Tratados',
   'Public Magazines': 'Revistas (Público)',
-  // Adicionar outras
 };
 
 export const CATEGORIES_LIST = [
@@ -186,27 +190,6 @@ export const ADMIN_CATEGORY = "Administrador";
 export const TERRITORY_SERVANT_CATEGORY = "Servo de Território";
 export const PUBLICATIONS_SERVANT_CATEGORY = 'Servo de Publicações'; 
 
-/*
-export interface ReadingSchedule {
-  id: string;
-  styleType: 'chaptersPerDay' | 'totalDuration' | 'chronological';
-  styleConfig: {
-    chapters?: number;
-    durationMonths?: number;
-    durationYears?: number;
-    startBookAbbrev: string // new
-  };
-  startDate: Timestamp;
-  status: 'active' | 'paused' | 'completed';
-  totalChaptersInBible: number;
-  chaptersReadCount: number;
-  progressPercent: number;
-  completedChaptersMap: { [key: string]: boolean };
-  lastReadReference: string | null;
-  readCompletionTimestamps?: Timestamp[]; // Make it optional for backwards compatibility
-}
-*/
-
 type StyleConfig =
   | { chapters: number } // For chaptersPerDay
   | { durationMonths: number } // For totalDuration
@@ -229,22 +212,6 @@ export interface ReadingSchedule {
   // Add other fields if necessary
 }
 
-/*
-export interface ActivePlanCardProps {
-  schedule: ReadingSchedule;
-  currentAssignment: string[];
-  onMarkRead: (chaptersToMark: string[]) => void;
-  onPausePlan: (scheduleId: string) => void;
-  onDeletePlan: (scheduleId: string) => void;
-  onRevertLastReading: () => void;
-  onResumePlan: (scheduleId: string) => void;
-  canRevert: boolean;
-  canResume: boolean;
-  isUpdatingProgress: boolean;
-  isProcessingAction: boolean; // Generic processing flag for pause/resume/delete
-  isReverting: boolean;
-}
-*/
 
 export interface ActivePlanCardProps {
   schedule: ReadingSchedule;
@@ -291,4 +258,35 @@ export interface UserAchievement {
   unlockedAt?: Timestamp;
   notified?: boolean; // Para controle de UI
   progress?: number; // Para conquistas com etapas (opcional)
+}
+
+
+//Map Types
+// Interface for individual feature properties we care about
+export interface FeatureProperties {
+  id?: number | string; // Allow both number and string IDs
+  section?: string;
+  details?: string;
+  color?: string; // Added optional color property
+  // Add other properties you expect in your GeoJSON features
+}
+
+// Extend GeoJSON Feature type to use our specific properties interface
+export type AppFeature = Feature<Geometry | null, FeatureProperties>;
+
+
+// Interface for styling specific features (Example: storing color)
+export interface FeatureStyle {
+   fillColor?: string;
+   strokeColor?: string;
+   strokeWidth?: number;
+}
+
+// --- Firestore Map Data Type ---
+// Define the structure for storing map data in Firestore
+export interface MapDataFirestore {
+  name: string;
+  geojsonData: string; // <<< CHANGED: Store as string
+  createdAt: FieldValue;
+  createdBy: string;
 }

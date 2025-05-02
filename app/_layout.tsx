@@ -7,7 +7,6 @@ import { ThemeProvider, useTheme } from '@/context/ThemeContext';
 import { AuthProvider } from '@/context/AuthContext';
 import { StatusBar } from 'expo-status-bar';
 import { useFonts } from 'expo-font';
-import * as Font from 'expo-font';
 import { Ionicons } from '@expo/vector-icons';
 
 SplashScreen.preventAutoHideAsync();

@@ -25,6 +25,7 @@ import { TerritoryCardData, TERRITORY_SERVANT_CATEGORY, CongregationData } from 
 import { Ionicons } from '@expo/vector-icons';
 import ConfirmationModal from '@/components/common/ConfirmationModal';
 import RenameModal from '@/components/common/RenameModal';
+import MapViewerBottomSheet from './MapViewerBottomSheet';
 // Opcional: Para zoom na imagem (instalar 'react-native-image-zoom-viewer')
 // import ImageViewer from 'react-native-image-zoom-viewer';
 
@@ -60,7 +61,11 @@ const SectionDetailModal: React.FC<SectionDetailModalProps> = ({
   const [cardToRename, setCardToRename] = useState<TerritoryCardData | null>(null);
   const [isRenameSectionModalVisible, setIsRenameSectionModalVisible] = useState(false);
   const [isImageViewerVisible, setIsImageViewerVisible] = useState(false); // <<< Estado para modal da imagem
-  const [viewingImageUrl, setViewingImageUrl] = useState<string | null>(null); // <<< URL da imagem a ser vista
+  const [viewingImageUrl, setViewingImageUrl] = useState<string | null>(null);
+
+  // --- Estados para controlar o Map Viewer ---
+  const [isMapViewerVisible, setIsMapViewerVisible] = useState(false);
+  const [viewingMapId, setViewingMapId] = useState<string | null>(null);
 
   // Estados de Loading para Ações
   const [isDeletingCard, setIsDeletingCard] = useState(false);
@@ -71,17 +76,20 @@ const SectionDetailModal: React.FC<SectionDetailModalProps> = ({
 
   const [currentSectionName, setCurrentSectionName] = useState(section);
   useEffect(() => {
-    if(isVisible) {
-        setCurrentSectionName(section); // Reseta para o nome da prop quando o modal abre
-    }
-}, [isVisible, section]);
+      if(isVisible) {
+          setCurrentSectionName(section);
+      } else {
+          // Reset map viewer state when main modal closes
+          setIsMapViewerVisible(false); // <<< Ensure map viewer also closes
+          setViewingMapId(null);
+      }
+  }, [isVisible, section]);
 
 useEffect(() => {
   let unsubscribe: Unsubscribe | null = null;
   if (isVisible && congregationId && city && currentSectionName) { // Usa currentSectionName
     setLoading(true);
     setCards([]);
-    console.log(`SectionDetailModal: Buscando cartões para ${city} - ${currentSectionName}`);
     const cardsRef = collection(db, "congregations", congregationId, "territoryCards");
     // Busca usando o nome atual da seção
     const q = query(cardsRef, where("city", "==", city), where("section", "==", currentSectionName));
@@ -229,46 +237,61 @@ const handleSaveSectionRename = async (newSectionName: string) => {
    };
 
 
-  // --- Renderização Item Cartão ---
-  const renderCardItem = ({ item }: { item: TerritoryCardData }) => (
+   const handleViewMap = (id: string | null | undefined) => {
+    if (id) {
+        setViewingMapId(id); // Set the mapId to view
+        setIsMapViewerVisible(true); // Open the bottom sheet
+    } else {
+        showMessage({ message: "Mapa não disponível", type: "info" });
+    }
+};
+const handleCloseMapView = () => {
+    setIsMapViewerVisible(false); // Close the bottom sheet
+    setViewingMapId(null);      // Clear the mapId
+};
+
+// --- Render Card Item (Unchanged from previous version) ---
+const renderCardItem = ({ item }: { item: TerritoryCardData }) => (
     <View style={[styles.cardItem, { backgroundColor: colors.backgroundPrimary, borderColor: colors.border }]}>
-       {/* Imagem ou Placeholder clicável */}
-       <TouchableOpacity onPress={() => handleViewImage(item.imageUrl)} disabled={!item.imageUrl}>
-            {item.imageUrl ? (
+        {/* Image / Map Icon / Placeholder */}
+        <TouchableOpacity
+            onPress={() => {
+                if (item.id) { handleViewMap(item.id); }
+                else if (item.imageUrl) { handleViewImage(item.imageUrl); }
+            }}
+            disabled={!item.imageUrl && !item.mapId}
+        >
+            {item.mapId ? (
+                <View style={[styles.cardImagePlaceholder, { backgroundColor: colors.primaryLight }]}>
+                    <Ionicons name="map-outline" size={28} color={colors.primary} />
+                </View>
+            ) : item.imageUrl ? (
                 <Image source={{ uri: item.imageUrl }} style={styles.cardImage} resizeMode="cover" />
             ) : (
                 <View style={[styles.cardImagePlaceholder, { backgroundColor: colors.border }]}>
                     <Ionicons name="image-outline" size={24} color={colors.textMuted} />
                 </View>
             )}
-       </TouchableOpacity>
-       {/* Info */}
-       <View style={styles.cardInfo}>
+        </TouchableOpacity>
+        {/* Info */}
+        <View style={styles.cardInfo}>
             <Text style={[styles.cardNumber, { color: colors.textPrimary }]}>{item.cardNumber}</Text>
             {item.notes && <Text style={[styles.cardNotes, { color: colors.textSecondary }]} numberOfLines={1}>{item.notes}</Text>}
             <Text style={[styles.cardStatus, { color: item.status === 'Disponível' ? colors.success : (item.status === 'Em campo' ? colors.warning : colors.error) }]}> {item.status} </Text>
-       </View>
-       {/* Ações */}
-       {canManageTerritories && (
-        <View style={styles.cardActions}>
-            <TouchableOpacity
-                 style={styles.actionButton}
-                 onPress={() => handlePresentRenameCardModal(item)} // <<< Chama handlePresentRenameCardModal
-                 disabled={isRenamingCard || isDeletingCard}
-             >
-                <Ionicons name="pencil-outline" size={20} color={(isRenamingCard || isDeletingCard) ? colors.textMuted : colors.primary} />
-            </TouchableOpacity>
-            <TouchableOpacity
-                 style={styles.actionButton}
-                 onPress={() => confirmDeleteCard(item)}
-                 disabled={isRenamingCard || isDeletingCard}
-             >
-                <Ionicons name="trash-outline" size={20} color={(isRenamingCard || isDeletingCard) ? colors.textMuted : colors.error} />
-            </TouchableOpacity>
         </View>
-    )}
+        {/* Actions */}
+        {canManageTerritories && (
+            <View style={styles.cardActions}>
+                <TouchableOpacity style={styles.actionButton} onPress={() => handlePresentRenameCardModal(item)} disabled={isRenamingCard || isDeletingCard}>
+                    <Ionicons name="pencil-outline" size={20} color={(isRenamingCard || isDeletingCard) ? colors.textMuted : colors.primary} />
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.actionButton} onPress={() => confirmDeleteCard(item)} disabled={isRenamingCard || isDeletingCard}>
+                    <Ionicons name="trash-outline" size={20} color={(isRenamingCard || isDeletingCard) ? colors.textMuted : colors.error} />
+                </TouchableOpacity>
+            </View>
+        )}
     </View>
-  );
+);
 
   // --- Renderização do Modal ---
   const styles = createStyles(colors);
@@ -356,9 +379,16 @@ const handleSaveSectionRename = async (newSectionName: string) => {
                           resizeMode="contain" // Garante que a imagem caiba na tela
                       />
                   )}
-                  {/* TODO: Substituir por react-native-image-zoom-viewer para zoom/pan */}
               </View>
           </Modal>
+
+          {/* --- Map Viewer Bottom Sheet Component --- */}
+          <MapViewerBottomSheet
+              isVisible={isMapViewerVisible}
+              onClose={handleCloseMapView}
+              congregationId={congregationId}
+              id={viewingMapId}
+          />
 
         </View>
       </KeyboardAvoidingView>

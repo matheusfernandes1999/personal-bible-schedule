@@ -403,8 +403,16 @@ const handleUpdateMeetingTimes = async () => {
           style={[styles.actionButton, { backgroundColor: colors.primary, width: '100%' }]}
           onPress={() => router.push('/screens/relatorio')}
         >
-          <Ionicons name="flash" size={18} color={colors.white} />
+          <Ionicons name="hourglass-outline" size={18} color={colors.white} />
           <Text style={styles.actionButtonText}>Relatório</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity
+          style={[styles.actionButton, { backgroundColor: colors.primary + '90', width: '100%' }]}
+          onPress={() => router.push('/screens/lembretes/notifications')}
+        >
+          <Ionicons name="notifications" size={18} color={colors.white} />
+          <Text style={styles.actionButtonText}>Lembretes</Text>
         </TouchableOpacity>
       </View>
 
@@ -695,7 +703,7 @@ const createStyles = (colors: ReturnType<typeof useTheme>['colors']) => StyleShe
   },
   adminActions: {
     marginTop: 16,
-    gap: 12,
+    gap: 8,
   },
   actionButton: {
     flexDirection: 'row',

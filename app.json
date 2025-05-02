@@ -16,7 +16,12 @@
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#512DA8"
       },
-      "package": "com.matheus.fernandes.congregationmanager"
+      "package": "com.matheus.fernandes.congregationmanager",
+      "useNextNotificationsApi": true,
+      "permissions": [
+        "android.permission.SCHEDULE_EXACT_ALARM", 
+        "android.permission.RECEIVE_BOOT_COMPLETED" 
+      ]
     },
     "web": {
       "bundler": "metro",

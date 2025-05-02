@@ -100,7 +100,7 @@ export default function RegisterStudySessionScreen() {
                 {isSaving ? (
                     <ActivityIndicator color={colors.white} size="small" />
                 ) : (
-                    <Text style={styles.buttonText}>Salvar Sessão</Text>
+                    <Text style={styles.buttonText}>Registrar Estudo</Text>
                 )}
             </TouchableOpacity>
 

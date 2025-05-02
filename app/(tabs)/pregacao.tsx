@@ -1,5 +1,5 @@
 // app/(tabs)/pregacao/index.tsx
-import React, { useLayoutEffect } from "react";
+import React from "react";
 import {
   View,
   Text,
@@ -11,7 +11,7 @@ import {
 import { useTheme } from "@/context/ThemeContext";
 import { useAuth } from "@/context/AuthContext";
 import { Ionicons } from "@expo/vector-icons";
-import { useNavigation, useRouter } from "expo-router"; // Para navegação
+import { useRouter } from "expo-router"; // Para navegação
 import MyActiveRecords from "@/components/pregacao/MyActiveRecords";
 import { ADMIN_CATEGORY, TERRITORY_SERVANT_CATEGORY } from "@/types";
 import IconeIcon from "@/assets/icons/icone";
@@ -20,8 +20,6 @@ export default function PregacaoScreen() {
   const { colors } = useTheme();
   const { loading: authLoading, userData, isAdmin, userCategories } = useAuth(); // Pega loading e dados do usuário
   const router = useRouter();
-  const navigation = useNavigation();
-
   // Função de navegação para Gerenciar Territórios
   const navigateToTerritoryManagement = () => {
     router.push("/screens/pregacao/cartoes");
@@ -115,7 +113,7 @@ export default function PregacaoScreen() {
         onPress={navigateToRegisterWork} // <<< Chama a nova função de navegação
         activeOpacity={0.7}
       >
-        <Ionicons name="pencil-outline" size={40} color={colors.secondary} />
+        <Ionicons name="pencil-outline" size={40} color={colors.error} />
         {/* Ícone diferente e cor secundária */}
         <Text style={[styles.cardTitle, { color: colors.textPrimary }]}>
           Registros de Território

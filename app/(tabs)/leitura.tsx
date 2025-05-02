@@ -598,8 +598,8 @@ const handleRevert = async () => {
 
   if (authLoading) {
     return (
-      <View style={[styles.container, styles.centered]}>
-        <ActivityIndicator size="large" color={colors.primary} />
+      <View style={[styles.container, styles.centered, { backgroundColor: colors.backgroundPrimary }]}>
+          <ActivityIndicator size="large" color={colors.primary} />
       </View>
     );
   }
@@ -655,8 +655,6 @@ const handleRevert = async () => {
         </TouchableOpacity>
       )}
 
-      
-
       <Modal transparent animationType="slide" visible={isPlanModalVisible} onRequestClose={() => setIsPlanModalVisible(false)}>
         <TouchableOpacity style={styles.bottomSheetOverlay} activeOpacity={1} onPressOut={() => setIsPlanModalVisible(false)}>
           <View style={[styles.bottomSheetContentContainer, { backgroundColor: colors.backgroundSecondary }]}>            
@@ -688,8 +686,8 @@ const handleRevert = async () => {
 
 const createStyles = (colors: any) => StyleSheet.create({
   container: { flex: 1 },
-  scrollContent: { padding: 10, gap: 14},
-  centered: { flexDirection: 'column', justifyContent: 'center', alignItems: 'center', alignContent: 'center', alignSelf: 'center', top: 150 },
+  scrollContent: { padding: 10, gap: 8},
+  centered: {flex: 1, width: '100%', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', alignContent: 'center', alignSelf: 'center' },
   infoText: { fontSize: 16, color: colors.textSecondary, textAlign: 'center' },
   infoTextSmall: { fontSize: 14, marginTop: 10, paddingHorizontal: 14 },
   fab: { position: 'absolute', bottom: 25, right: 25, width: 60, height: 60, borderRadius: 30, justifyContent: 'center', alignItems: 'center', elevation: 6, shadowColor: '#000', shadowOffset: { width: 0, height: 3 }, shadowOpacity: 0.3, shadowRadius: 4, zIndex: 10 },
