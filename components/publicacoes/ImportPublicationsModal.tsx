@@ -263,20 +263,25 @@ const ImportPublicationsModal: React.FC<ImportPublicationsModalProps> = ({
     const processParsedData = useCallback((data: CSVRow[]) => {
         const items: PublicationItem[] = [];
         let processingErrors = 0;
-        let currentCategory = 'Sem Categoria'; // Default category
+        // Removed: let currentCategory = 'Sem Categoria'; // We get category from each row now
         let detectedMonthStr: string | null = null; // e.g., "Abril 2025"
         let determinedMonthId: string | null = null; // e.g., "2025-04"
-
+    
         console.log("[ImportModal] Starting processing of parsed data...");
-
+    
         data.forEach((row, index) => {
-             // Row already has normalized keys from PapaParse transformHeader
+            // Row already has normalized keys from PapaParse transformHeader
             const {
-                categoria, codigo_item, descricao_item, quantidade_atual,
-                movimento_medio_mensal, observacao_movimento, month
+                categoria, // Keep this - we read it directly now
+                codigo_item,
+                descricao_item,
+                quantidade_atual,
+                movimento_medio_mensal,
+                observacao_movimento,
+                month
             } = row;
-
-            // 1. Detect Month (use the first valid one found)
+    
+            // 1. Detect Month (use the first valid one found) - NO CHANGE HERE
             if (month && !determinedMonthId) {
                 const potentialMonthId = getMonthIdFromString(month);
                 if (potentialMonthId) {
@@ -284,58 +289,67 @@ const ImportPublicationsModal: React.FC<ImportPublicationsModalProps> = ({
                     detectedMonthStr = month.trim(); // Store original display month
                     console.log(`[ImportModal] Month ID ${determinedMonthId} ('${detectedMonthStr}') detected at row ${index + 1}`);
                 } else {
-                     console.warn(`[ImportModal] Row ${index + 1}: Invalid month format '${month}'. Ignoring for month detection.`);
+                    console.warn(`[ImportModal] Row ${index + 1}: Invalid month format '${month}'. Ignoring for month detection.`);
                 }
             }
-
-            // 2. Detect Category Row (specific format: category in first col, maybe repeated in description, no code)
-            // Adjust this logic based on the exact format of category rows in the CSV
+    
+            // 2. REMOVED: Category Header Detection Logic
+            // The old logic assuming category headers is removed as it doesn't match the CSV format.
+            /*
             if (categoria && (!codigo_item || codigo_item.length === 0) && descricao_item === categoria) {
                  currentCategory = categoria.trim() || 'Sem Categoria';
                  console.log(`[ImportModal] Category set to '${currentCategory}' at row ${index + 1}`);
                  return; // Skip to next row, this is just a category header
             }
-
+            */
+    
             // 3. Process Item Row (must have code, description, and month must be determined)
             if (codigo_item && descricao_item && determinedMonthId) {
-                // Clean and parse numeric values
+                // --- MODIFICATION START ---
+                // Get category directly from the row's 'categoria' field
+                const itemCategory = categoria?.trim() || 'Sem Categoria'; // Use 'Sem Categoria' if missing/empty
+                // --- MODIFICATION END ---
+    
+                // Clean and parse numeric values - NO CHANGE HERE
                 const cleanedQuantity = quantidade_atual?.replace(',', '.');
                 const cleanedMovement = movimento_medio_mensal?.replace(',', '.');
-
                 const quantity = cleanedQuantity ? parseInt(cleanedQuantity, 10) : null;
                 const movement = cleanedMovement ? parseFloat(cleanedMovement) : null;
-
-                // Translate category using imported mapping
-                const categoryPT = PUBLICATION_CATEGORY_TRANSLATIONS[currentCategory] || currentCategory;
-
+    
+                // --- MODIFICATION START ---
+                // Translate category using imported mapping, using the category from THIS ROW
+                const categoryPT = PUBLICATION_CATEGORY_TRANSLATIONS[itemCategory] || itemCategory;
+                // --- MODIFICATION END ---
+    
+    
                 const item: PublicationItem = {
                     itemCode: codigo_item.trim(),
                     description: descricao_item.trim(),
-                    category: currentCategory, // Store original category name
-                    categoryPT: categoryPT, // Store translated category name
-                    // 'month' (display format) is no longer stored in the item document itself
-                    currentQuantity: !isNaN(quantity!) ? quantity : 0, // Default to 0 if parsing fails or empty
-                    monthlyMovement: !isNaN(movement!) ? movement : null, // Keep null if parsing fails or empty
+                    // --- MODIFICATION START ---
+                    category: itemCategory, // Store original category name from the row
+                    categoryPT: categoryPT,  // Store translated category name
+                    // --- MODIFICATION END ---
+                    currentQuantity: !isNaN(quantity!) ? quantity : 0,
+                    monthlyMovement: !isNaN(movement!) ? movement : null,
                     movementObservation: observacao_movimento?.trim() || null,
+                    // 'month' display format is not stored in the item itself
                 };
                 items.push(item);
             } else if (codigo_item && descricao_item && !determinedMonthId) {
-                // Item found before month was determined (might happen if month column is later)
-                // These items will be processed once month is found. No error here yet.
+                // Item found before month was determined (might happen if month column is later) - NO CHANGE HERE
                 // console.log(`[ImportModal] Row ${index + 1}: Item ${codigo_item} found, waiting for month definition.`);
             } else {
-                // Row is not a category header or a valid item (or month not yet found)
-                 // Log as warning only if the row contains *some* potentially relevant data
+                // Row is not a valid item (or month not yet found) - NO CHANGE HERE
                  if (codigo_item || descricao_item || categoria || quantidade_atual || movimento_medio_mensal || month) {
                      console.warn(`[ImportModal] Row ${index + 1}: Skipped. Unexpected format or required field missing (Code: ${codigo_item}, Desc: ${descricao_item}, Month Found: ${!!determinedMonthId}). Data:`, row);
                      processingErrors++;
                  }
             }
         });
-
+    
         console.log(`[ImportModal] Data processing finished. ${items.length} valid items found.`);
-
-        // --- Final Validation and State Update ---
+    
+        // --- Final Validation and State Update --- NO CHANGE HERE
         if (!determinedMonthId) {
             showMessage({ message: "Mês Não Encontrado", description: "Não foi possível encontrar uma coluna 'month' válida no formato 'Mês Ano' (ex: Abril 2025).", type: "danger", duration: 7000 });
             setIsParsing(false);
@@ -346,11 +360,11 @@ const ImportPublicationsModal: React.FC<ImportPublicationsModalProps> = ({
             setIsParsing(false);
             return;
         }
-
+    
         // Success: Update state with processed data
         setParsedItems(items);
-        setImportedMonthDisplay(detectedMonthStr); // For display in UI
-        setImportedMonthId(determinedMonthId);   // For Firestore path & callback
+        setImportedMonthDisplay(detectedMonthStr);
+        setImportedMonthId(determinedMonthId);
         showMessage({
            message: "Arquivo Processado",
            description: `${items.length} itens encontrados para ${detectedMonthStr}. Pronto para importar.`,
@@ -360,7 +374,7 @@ const ImportPublicationsModal: React.FC<ImportPublicationsModalProps> = ({
             showMessage({ message: "Atenção", description: `${processingErrors} linha(s) foram ignoradas (formato inválido). Veja console.`, type: "warning", duration: 5000 });
         }
         setIsParsing(false); // Finished parsing
-    }, []); // No external dependencies
+    }, [getMonthIdFromString]);
 
     // --- Firestore Upload Logic ---
     const handleUploadToFirestore = useCallback(async () => {

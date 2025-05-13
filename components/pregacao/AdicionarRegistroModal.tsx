@@ -3,13 +3,13 @@ import React, { useState, useEffect, useMemo } from 'react';
 import {
   View, Text, StyleSheet, TouchableOpacity, ActivityIndicator, Modal,
   TextInput, TouchableWithoutFeedback, KeyboardAvoidingView, Platform,
-  Dimensions, ScrollView, FlatList, Alert, Image // <<< Importa Image
+  Dimensions, FlatList // <<< Importa Image
 } from 'react-native';
 import { useTheme } from '@/context/ThemeContext';
 import { useAuth } from '@/context/AuthContext';
 import { showMessage } from 'react-native-flash-message';
-import { collection, query, where, onSnapshot, Unsubscribe, doc, writeBatch, serverTimestamp, Timestamp, getDoc, orderBy } from 'firebase/firestore'; // <<< Importa Timestamp
-import { db, storage } from '@/lib/firebase'; // <<< Importa storage
+import { collection, query, where, onSnapshot, Unsubscribe, doc, writeBatch, Timestamp, getDoc, orderBy } from 'firebase/firestore'; // <<< Importa Timestamp
+import { db } from '@/lib/firebase'; // <<< Importa storage
 import { TerritoryCardData, PersonData, TerritoryRecordData } from '@/types';
 import { Ionicons } from '@expo/vector-icons';
 
@@ -31,7 +31,7 @@ const AdicionarRegistroModal: React.FC<AdicionarRegistroModalProps> = ({
   congregationId,
 }) => {
   const { colors } = useTheme();
-  const { user, userData } = useAuth(); // Pega usuário logado
+  const { user } = useAuth(); // Pega usuário logado
 
   // --- Estados do Formulário ---
   const [selectedCard, setSelectedCard] = useState<CardListItem | null>(null);

@@ -60,21 +60,29 @@ export interface PersonData {
  * Armazenado como subcoleção em /congregations/{congregationId}/territoryCards/{cardId}
  */
 
+export interface FeatureProperties { // Add this if not already present
+  id?: number | string;
+  section?: string;
+  details?: string;
+  color?: string;
+  // Add other properties you expect in your GeoJSON features
+}
+
 export interface TerritoryCardData {
-  id: string; // Document ID from Firestore
+  id: string;
   city: string;
   section: string;
   cardNumber: string;
-  notes?: string;
-  imageUrl?: string | null; // URL if image is used
-  mapId?: string | null;    // Firestore Document ID if GeoJSON map is used
-  status: "Disponível" | "Em campo" | "Não trabalhar";
-  lastWorkedBy?: string | null; // User ID
-  lastWorkedByName?: string | null; // User Name
-  lastReturnDate?: Timestamp | null; // Firestore Timestamp
-  createdAt: Timestamp | FieldValue; // Allow FieldValue for serverTimestamp on creation
-  createdBy: string; // User ID
-  geojsonData: string
+  notes?: any;
+  imageUrl?: string | null; // <<< Optional
+  mapId?: string | null;    // <<< Optional
+  status: 'Disponível' | 'Em uso' | 'Não trabalhar';
+  lastWorkedBy?: string | null;
+  lastWorkedByName?: string | null;
+  lastReturnDate?: Timestamp | null;
+  createdAt: Timestamp | FieldValue;
+  createdBy: string;
+  // Add any other fields you might have
 }
 
 /**

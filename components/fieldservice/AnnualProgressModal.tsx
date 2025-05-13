@@ -1,17 +1,19 @@
 // src/components/fieldservice/AnnualProgressModal.tsx
 import React, { useState, useEffect } from 'react';
-import { Modal, View, Text, StyleSheet, TouchableOpacity, ActivityIndicator, ScrollView, Platform } from 'react-native'; // Adicionar Platform
-import { Ionicons } from '@expo/vector-icons';
+import { Modal, View, Text, StyleSheet, TouchableOpacity, ActivityIndicator, ScrollView } from 'react-native'; // Adicionar Platform
 import { useTheme } from '@/context/ThemeContext';
 import { db } from '@/lib/firebase';
-import { collection, query, where, getDocs, Timestamp } from 'firebase/firestore';
+import { collection, query, where, getDocs } from 'firebase/firestore';
 import { differenceInCalendarDays, getYear, getMonth, startOfDay, endOfMonth } from 'date-fns'; // Simplificado imports se não usar todos
 import { SafeAreaView } from 'react-native-safe-area-context'; // <--- IMPORTAR SafeAreaView
+import { Bar as ProgressBar } from 'react-native-progress';
 
 interface AnnualProgressModalProps {
     isVisible: boolean;
     onClose: () => void;
     userId: any | null;
+    monthlyReport: any;
+    currentMonth: any
 }
 
 interface ReportSummary {
@@ -20,9 +22,7 @@ interface ReportSummary {
     hours: number;
 }
 
-// Função para obter o ano de serviço atual (Setembro - Agosto)
 const getCurrentServiceYearInfo = () => {
-    // ... (função sem alterações) ...
     const today = new Date();
     const currentMonth = getMonth(today); // 0-11
     const currentYear = getYear(today);
@@ -33,10 +33,27 @@ const getCurrentServiceYearInfo = () => {
     return { serviceYearStartYear, serviceYearEndYear, serviceYearStartDate, serviceYearEndDate };
 };
 
+const getServiceYearInfo = () => {
+  const today = new Date();
+  const month = getMonth(today);
+  const year = getYear(today);
+  const startYear = month >= 8 ? year : year - 1;
+  const endYear = startYear + 1;
+  return {
+    startDate: new Date(startYear, 8, 1),
+    endDate: new Date(endYear, 7, 31),
+    startYear,
+    endYear,
+  };
+};
+
+
 export const AnnualProgressModal: React.FC<AnnualProgressModalProps> = ({
     isVisible,
     onClose,
     userId,
+    monthlyReport,
+    currentMonth
 }) => {
     const { colors } = useTheme();
     const styles = createStyles(colors);
@@ -47,6 +64,7 @@ export const AnnualProgressModal: React.FC<AnnualProgressModalProps> = ({
     const [error, setError] = useState<string | null>(null);
 
     const ANNUAL_TARGET = 600;
+    const MONTHLY_TARGET = ANNUAL_TARGET / 12; // Meta mensal implícita
 
     // useEffect e fetchAnnualData (sem alterações na lógica interna)
     useEffect(() => {
@@ -98,7 +116,6 @@ export const AnnualProgressModal: React.FC<AnnualProgressModalProps> = ({
          }
     };
 
-
     // Cálculos de Progresso (sem alterações na lógica)
     const { serviceYearStartDate, serviceYearEndDate } = getCurrentServiceYearInfo();
     const today = startOfDay(new Date());
@@ -106,18 +123,26 @@ export const AnnualProgressModal: React.FC<AnnualProgressModalProps> = ({
     if (today <= serviceYearEndDate) {
         remainingDays = differenceInCalendarDays(serviceYearEndDate, today) + 1;
     }
-    const remainingHours = Math.max(0, ANNUAL_TARGET - totalHours);
-    const dailyAverageNeeded = (remainingDays > 0 && remainingHours > 0) ? (remainingHours / remainingDays) : 0;
-    const monthlyAverage = ANNUAL_TARGET / 12;
-     // Evita divisão por zero se não houver relatórios ainda
-     const monthsReportedCount = reports.length > 0 ? reports.length : 1;
+
+    // Date calculations
+    const { endDate } = getServiceYearInfo();
+    const daysLeftYear = today <= endDate ? differenceInCalendarDays(endDate, today) + 1 : 0;
+    const remainingHoursYear = Math.max(0, ANNUAL_TARGET - totalHours);
+    const dailyNeededYear = daysLeftYear > 0 ? remainingHoursYear / daysLeftYear : 0;
+
+    const endOfMonthDate = endOfMonth(today);
+    const daysLeftMonth = today <= endOfMonthDate ? differenceInCalendarDays(endOfMonthDate, today) + 1 : 0;
+    const remainingHoursMonth = Math.max(0, MONTHLY_TARGET - monthlyReport);
+    const dailyNeededMonth = daysLeftMonth > 0 ? remainingHoursMonth / daysLeftMonth : 0;
+    
+    // Evita divisão por zero se não houver relatórios ainda
+    const monthsReportedCount = reports.length > 0 ? reports.length : 1;
     const currentMonthAverage = totalHours / monthsReportedCount;
 
     return (
         <Modal
             transparent
-            // animationType="fade" // MUDADO
-            animationType="slide"   // <--- MUDADO PARA slide
+            animationType="slide" 
             visible={isVisible}
             onRequestClose={onClose}
         >
@@ -146,35 +171,44 @@ export const AnnualProgressModal: React.FC<AnnualProgressModalProps> = ({
                                      <Text style={styles.progressLabel}>Ano de Serviço:</Text>
                                      <Text style={styles.progressValue}>Set/{getYear(serviceYearStartDate)} - Ago/{getYear(serviceYearEndDate)}</Text>
                                  </View>
-                                 <View style={styles.progressItem}>
-                                     <Text style={styles.progressLabel}>Meta Anual:</Text>
-                                     <Text style={styles.progressValue}>{ANNUAL_TARGET} horas</Text>
-                                 </View>
-                                 <View style={styles.progressItem}>
-                                     <Text style={styles.progressLabel}>Total de Horas Relatadas:</Text>
-                                     <Text style={[styles.progressValue, styles.highlightValue]}>{totalHours.toFixed(1)} horas</Text>
-                                 </View>
-                                 {/* --- Horas Restantes --- */}
-                                 <View style={[styles.progressItem, styles.remainingItem]}>
-                                     <Text style={[styles.progressLabel, styles.remainingLabel]}>Horas Restantes:</Text>
-                                     <Text style={[styles.progressValue, styles.remainingValue]}>{remainingHours.toFixed(1)} horas</Text>
-                                 </View>
-                                  {/* --- Fim Horas Restantes --- */}
-                                 <View style={styles.progressItem}>
-                                     <Text style={styles.progressLabel}>Dias Restantes (incl. hoje):</Text>
-                                     <Text style={styles.progressValue}>{remainingDays > 0 ? remainingDays : 'Encerrado'}</Text>
-                                 </View>
-                                 <View style={[styles.progressItem, styles.averageItem]}>
-                                     <Text style={styles.progressLabel}>Média Diária Necessária:</Text>
-                                     <Text style={[styles.progressValue, styles.highlightValue, styles.averageValue]}>
-                                         {remainingDays > 0 ? dailyAverageNeeded.toFixed(2) : '0.00'} h/dia
-                                      </Text>
-                                 </View>
-                                 <View style={[styles.progressItem, {marginTop: 10}]}>
-                                     <Text style={styles.progressLabelSmall}>Média Mensal (Meta):</Text>
-                                     <Text style={styles.progressValueSmall}>{monthlyAverage.toFixed(1)} h/mês</Text>
-                                 </View>
-                                 <View style={styles.progressItem}>
+                                
+                                 <View style={styles.section}>
+                                    <Text style={styles.sectionTitle}>Progresso Anual</Text>
+                                    <Text style={styles.value}>{totalHours.toFixed(1)} / {ANNUAL_TARGET} h</Text>
+                                    <ProgressBar
+                                        progress={totalHours / ANNUAL_TARGET}
+                                        width={null}
+                                        height={8}
+                                        borderRadius={4}
+                                        style={styles.progressBar}
+                                        color={colors.primary}
+                                        unfilledColor={colors.backgroundSecondary}
+                                    />
+                                    <Text style={styles.smallText}>
+                                        Faltam {remainingHoursYear.toFixed(1)} h em {daysLeftYear} dias (~{dailyNeededYear.toFixed(2)} h/dia)
+                                    </Text>
+                                    </View>
+
+                                    {/* Progresso Mês Atual */}
+                                    <View style={styles.section}>
+                                    <Text style={styles.sectionTitle}>Progresso de {currentMonth}</Text>
+                                    <ProgressBar
+                                        progress={monthlyReport / MONTHLY_TARGET}
+                                        width={null}
+                                        height={8}
+                                        borderRadius={4}
+                                        style={styles.progressBar}
+                                        color={colors.primary}
+                                        unfilledColor={colors.backgroundSecondary}
+                                    />
+                                    <Text style={styles.smallText}>
+                                        Falta fazer {remainingHoursMonth.toFixed(1)} h em {daysLeftMonth} dias
+                                    </Text>
+                                    <Text style={styles.smallText}>
+                                        Para fechar: {dailyNeededMonth.toFixed(2)} h/dia
+                                    </Text>
+                                    </View>
+                                    <View style={styles.progressItem}>
                                      <Text style={styles.progressLabelSmall}>Sua Média Mensal (até agora):</Text>
                                      <Text style={styles.progressValueSmall}>{currentMonthAverage.toFixed(1)} h/mês</Text>
                                  </View>
@@ -236,12 +270,6 @@ const createStyles = (colors: ReturnType<typeof useTheme>['colors']) => StyleShe
         flex: 1, // Ocupa espaço para centralizar (considerando o botão)
         textAlign: 'center', // Centraliza o título
     },
-    closeButton: {
-        padding: 5,
-        position: 'absolute', // Posição absoluta para não afetar título
-        right: 0,
-        top: -5, // Ajuste fino da posição vertical
-    },
     loader: {
         marginVertical: 40,
         height: 200, // Altura mínima enquanto carrega
@@ -254,7 +282,7 @@ const createStyles = (colors: ReturnType<typeof useTheme>['colors']) => StyleShe
          height: 200, // Altura mínima no erro
     },
      scrollContainer: {
-        maxHeight: 500, // Define uma altura máxima para o scroll interno
+        maxHeight: 700, // Define uma altura máxima para o scroll interno
      },
      scrollContent: {
         paddingBottom: 10,
@@ -265,28 +293,6 @@ const createStyles = (colors: ReturnType<typeof useTheme>['colors']) => StyleShe
         justifyContent: 'space-between',
         alignItems: 'center',
         paddingVertical: 9, // Leve ajuste
-    },
-    remainingItem: { // Estilo específico para destacar horas restantes
-        paddingVertical: 12,
-        borderTopWidth: 1,
-        borderBottomWidth: 1,
-        borderColor: colors.border,
-        marginTop: 5,
-        marginBottom: 5,
-     },
-     remainingLabel: {
-         fontWeight: 'bold',
-     },
-     remainingValue: {
-        fontWeight: 'bold',
-        fontSize: 16,
-        color: colors.warning, // Cor de aviso/atenção
-     },
-    averageItem: {
-        paddingVertical: 12,
-        marginTop: 10,
-        borderTopWidth: 1,
-        borderTopColor: colors.border,
     },
     progressLabel: {
         fontSize: 15,
@@ -299,21 +305,55 @@ const createStyles = (colors: ReturnType<typeof useTheme>['colors']) => StyleShe
         fontWeight: '600',
         color: colors.textPrimary,
         textAlign: 'right',
+
+    }, progressValueSmall: {
+        fontSize: 13,
+        fontWeight: '500',
+        color: colors.textSecondary,
     },
     progressLabelSmall: {
         fontSize: 13,
         color: colors.textSecondary, // Mais suave
     },
-    progressValueSmall: {
-        fontSize: 13,
-        fontWeight: '500',
-        color: colors.textSecondary,
-    },
-    highlightValue: {
-        color: colors.primary,
-        fontWeight: 'bold',
-    },
-    averageValue: {
+    title: {
+        fontSize: 20,
+        fontWeight: '700',
+        color: colors.textPrimary,
+        textAlign: 'center',
+        marginBottom: 16,
+      },
+      content: {
+        paddingBottom: 20,
+      },
+      section: {
+        backgroundColor: colors.backgroundSecondary,
+        borderRadius: 12,
+        padding: 15,
+        marginBottom: 12,
+      },
+      sectionTitle: {
         fontSize: 16,
-    }
+        fontWeight: '600',
+        color: colors.textSecondary,
+        marginBottom: 6,
+        textTransform: 'capitalize',
+      },
+      sectionValue: {
+        fontSize: 18,
+        fontWeight: '700',
+        color: colors.textPrimary,
+      },
+      value: {
+        fontSize: 18,
+        fontWeight: '700',
+        color: colors.primary,
+        marginBottom: 6,
+      },
+      progressBar: {
+        marginBottom: 6,
+      },
+      smallText: {
+        fontSize: 13,
+        color: colors.textSecondary,
+      },
 });

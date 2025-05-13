@@ -417,12 +417,10 @@ export default function FieldServiceScreen() {
 
        const monthYearStr = formatMonthYear(selectedDate);
        let message = `Relatório - ${monthYearStr}\n`;
-       message += `----------------------------------\n`;
 
        if (currentRole === 'pioneer_regular' || currentRole === 'pioneer_auxiliary') {
-           const target = currentRole === 'pioneer_regular' ? 50 : (monthlyReport.isAuxiliaryTarget15 ? 15 : 30);
-           message += `Horas (Meta ${target}): ${monthlyReport.hours?.toFixed(1) ?? '0.0'}\n`; // Format hours
-           message += `Estudos (Contados): ${isLoadingStudies ? 'Calculando...' : calculatedStudies}\n`;
+           message += `Horas: ${monthlyReport.hours?.toFixed(1) ?? '0.0'}\n`; // Format hours
+           message += `Estudos: ${isLoadingStudies ? 'Calculando...' : calculatedStudies}\n`;
            if ((monthlyReport.ldcHours ?? 0) > 0) message += `Horas LDC/Outras: ${monthlyReport.ldcHours}\n`;
            if ((monthlyReport.abonoHours ?? 0) > 0) message += `Horas Abono: ${monthlyReport.abonoHours}\n`;
        } else if (currentRole === 'publisher') {
@@ -547,10 +545,9 @@ export default function FieldServiceScreen() {
                     <View style={styles.formContent}>
                         {/* Display Total Hours and Add Hours Input/Button */}
                         <View style={styles.inputGroup}>
-                            <Text style={styles.inputLabel}>Horas no Ministério</Text>
+                            <Text style={styles.timerLabel}>Horas no ministerio:</Text>
                             {/* Display Area */}
                             <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', marginBottom: 5, gap: 10 }}>
-                                <Text style={{ fontSize: 14, color: colors.textSecondary }}>Total Mês:</Text>
                                 {/* Use small loader specifically for report loading updates */}
                                 {isLoadingReport && monthlyReport.year ? (
                                     <ActivityIndicator size="small" color={colors.primary}/>
@@ -614,7 +611,7 @@ export default function FieldServiceScreen() {
                                  disabled={isSaving || isAddingHours} // Disable if saving
                              >
                                  <Ionicons name="add-circle-outline" size={20} color={colors.primary} />
-                                 <Text style={styles.sessionButtonText}>Registrar Sessão de Estudo</Text>
+                                 <Text style={styles.sessionButtonText}>Registrar Estudo</Text>
                              </TouchableOpacity>
                          </View>
 
@@ -803,6 +800,8 @@ export default function FieldServiceScreen() {
                 isVisible={isProgressModalVisible}
                 onClose={() => setIsProgressModalVisible(false)}
                 userId={user?.uid}
+                monthlyReport={monthlyReport.hours?.toFixed(1)}
+                currentMonth={formatMonthYear(selectedDate)}
             />
 
             <RoleSelectionModal
@@ -1003,6 +1002,7 @@ const createStyles = (colors: ReturnType<typeof useTheme>['colors']) => StyleShe
     },
      inputGroup: {
         gap: 8,
+        alignItems: 'center'
     },
     inputLabel: {
         color: colors.textPrimary,
