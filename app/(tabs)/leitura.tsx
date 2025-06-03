@@ -374,41 +374,71 @@ const handleMarkRead = async (batch: string[]) => {
       const newCompletedChaptersMap = { ...activeSchedule.completedChaptersMap };
       let added = 0;
       let lastProcessedStandardizedKey: string | null = null;
+      // Regex to check for "bookAbbrev-chapterNum" format, e.g., "gn-1", "1jn-5"
+      // Allows for book abbreviations like "1jn", "2co", "ps". Assumes chapter numbers are digits.
+      const standardizedFormatRegex = /^[1-3]?[a-z]+-[0-9]+$/i;
 
-      for (const originalRef of batch) {
-        const parts = originalRef.trim().split(/ (?=[^\s]*$)/); // Split on the last space
-        let bookNameOrAbbrev = '';
-        let chapterNumStr = '';
+      for (const r of batch) {
+        const currentRef = r.toLowerCase().trim(); // Convert to lowercase and trim
+        let standardizedKey: string | null = null;
 
-        if (parts.length === 2) {
-          bookNameOrAbbrev = parts[0];
-          chapterNumStr = parts[1];
-        } else if (parts.length === 1) {
-          // Might be just "BookName" if it's a single chapter book and UI sends it like that
-          // Or, could be an already standardized key. For now, assume it needs parsing.
-          // This part might need more robust handling if keys can be mixed.
-          // For this fix, we assume 'r' is in "Book Chapter" or "BookAbbrev Chapter" format.
-          console.warn(`[handleMarkRead] Unexpected chapter reference format: "${originalRef}". Assuming it's a book name for a single-chapter book or needs chapter number.`);
-          // Attempt to treat as book name and default to chapter 1 if valid.
-          bookNameOrAbbrev = originalRef;
-          chapterNumStr = "1"; // Default to 1, getBookInfo will validate chapter count later.
+        if (standardizedFormatRegex.test(currentRef)) {
+          standardizedKey = currentRef; // Already in correct format (and now lowercase)
+          console.log(`[handleMarkRead] Using already standardized chapter reference: ${standardizedKey}`);
         } else {
-          console.warn(`[handleMarkRead] Could not parse chapter reference: "${originalRef}". Skipping.`);
-          continue;
+          // Apply previous parsing logic for "Book Chapter" or "BookAbbrev Chapter" formats
+          const parts = r.trim().split(/ (?=[^\s]*$)/); // Split on the last space (using original 'r' for parsing book name case)
+          let bookNameOrAbbrev = '';
+          let chapterNumStr = '';
+
+          if (parts.length === 2) {
+            bookNameOrAbbrev = parts[0];
+            chapterNumStr = parts[1];
+          } else if (parts.length === 1 && r.trim().match(/\d+$/)) { // e.g. "Genesis1" (no space) - less likely
+            console.warn(`[handleMarkRead] Attempting to parse reference with no space: "${r}"`);
+            const match = r.trim().match(/^(.*?)(\d+)$/);
+            if (match && match.length === 3) {
+                bookNameOrAbbrev = match[1];
+                chapterNumStr = match[2];
+            } else {
+                 console.warn(`[handleMarkRead] Could not parse chapter reference with no space: "${r}". Skipping.`);
+                 continue;
+            }
+          }
+           else {
+            console.warn(`[handleMarkRead] Could not parse chapter reference using space delimiter: "${r}". It might be a book name only or malformed. Skipping.`);
+            continue;
+          }
+
+          const chapterNumber = parseInt(chapterNumStr, 10);
+          if (isNaN(chapterNumber)) {
+            console.warn(`[handleMarkRead] Chapter number is not a number for: "${r}". Skipping.`);
+            continue;
+          }
+
+          const bookInfo = getBookInfo(bookNameOrAbbrev);
+
+          if (bookInfo && bookInfo.abbrev) {
+            if (chapterNumber > 0 && chapterNumber <= bookInfo.chapterCount) {
+              standardizedKey = `${bookInfo.abbrev}-${chapterNumber}`; // Ensure bookInfo.abbrev is lowercase from getBookInfo
+              console.log(`[handleMarkRead] Standardized "${r}" to "${standardizedKey}"`);
+            } else {
+              console.warn(`[handleMarkRead] Chapter number ${chapterNumber} out of range for ${bookInfo.name} (Max: ${bookInfo.chapterCount}) from ref: "${r}". Skipping.`);
+              continue;
+            }
+          } else {
+            console.warn(`[handleMarkRead] Could not get bookInfo for: "${bookNameOrAbbrev}" from ref "${r}". Skipping.`);
+            continue;
+          }
         }
 
-        const bookInfo = getBookInfo(bookNameOrAbbrev);
-        const chapterNumber = parseInt(chapterNumStr, 10);
-
-        if (bookInfo && !isNaN(chapterNumber) && chapterNumber > 0 && chapterNumber <= bookInfo.chapterCount) {
-          const standardizedKey = `${bookInfo.abbrev}-${chapterNumber}`;
+        // If a standardized key was successfully determined (either pre-standardized or newly standardized)
+        if (standardizedKey) {
           if (!newCompletedChaptersMap[standardizedKey]) {
             newCompletedChaptersMap[standardizedKey] = true;
             added++;
           }
           lastProcessedStandardizedKey = standardizedKey; // Keep track of the last valid one
-        } else {
-          console.warn(`[handleMarkRead] Could not standardize chapter reference: "${originalRef}" (BookInfo: ${JSON.stringify(bookInfo)}, Chapter: ${chapterNumStr}). Skipping.`);
         }
       }
 
@@ -436,7 +466,7 @@ const handleMarkRead = async (batch: string[]) => {
       // Determine the *actual* last chapter read from the batch for storage
       // This assumes the batch is ordered correctly by calculateAssignment
       // Use the last *successfully processed* standardized key as the lastReadReference
-      const actualLastRead = lastProcessedStandardizedKey; 
+      const actualLastRead = lastProcessedStandardizedKey;
 
       const upd: Partial<ReadingSchedule> = { // Use Partial for update object
           chaptersReadCount: (activeSchedule.chaptersReadCount || 0) + added, // Ensured this is correct
@@ -486,7 +516,7 @@ const handleRevert = async () => {
          // 'added' in handleMarkRead might be less than lastMarkedBatch.length.
          // For simplicity, we revert based on lastMarkedBatch.length, assuming most are processed.
          // A more robust revert would re-standardize keys from lastMarkedBatch to delete them.
-         const count = lastMarkedBatch.length; 
+         const count = lastMarkedBatch.length;
          const newCount = Math.max(0, (activeSchedule.chaptersReadCount || 0) - count);
          const newPct = newCount > 0 ? (newCount / activeSchedule.totalChaptersInBible) * 100 : 0;
 
