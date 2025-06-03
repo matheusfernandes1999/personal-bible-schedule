@@ -652,8 +652,10 @@ export default function FieldServiceScreen() {
                                 onValueChange={(value) => {
                                     // Update state locally first for immediate UI feedback
                                     setMonthlyReport(prev => ({ ...prev, participated: value }));
-                                    // Then trigger save
-                                    handleSaveChanges(); // Auto-save publisher participation
+                                    // Then trigger save, but allow the current state update to process first
+                                    setTimeout(() => {
+                                        handleSaveChanges(); // Auto-save publisher participation
+                                    }, 0);
                                 }}
                                 disabled={isSaving || isAddingHours} // Disable while saving
                             />
